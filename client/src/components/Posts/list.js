@@ -15,11 +15,11 @@ class PostsList extends React.Component {
 				<table>
 					<thead>
 						<tr>
-							<th>Title</th>
-							<th>Author</th>
-							<th>Categories</th>
-							<th className="text-center">Vote score</th>
-							<th></th>
+							<th width="50%">Title</th>
+							<th width="10%">Author</th>
+							<th width="10%">Categories</th>
+							<th width="10%" className="text-center">Vote score</th>
+							<th width="20%"></th>
 						</tr>
 					</thead>
 
@@ -29,12 +29,12 @@ class PostsList extends React.Component {
 								posts.map(post => {
 									return(
 										<tr key={post.id}>
-											<td width="50%">
+											<td>
 												<Link to={`/posts/${post.id}`}>{post.title}</Link>
 											</td>
-											<td width="10%">{post.author}</td>
-											<td width="10%">{post.category}</td>
-											<td width="10%" className="text-center">{post.voteScore}</td>
+											<td>{post.author}</td>
+											<td>{post.category}</td>
+											<td className="text-center">{post.voteScore}</td>
 											<td width="20%" className="text-right">
 												<Link to={`/posts/edit/${post.id}`} className="button">Edit</Link>
 												<button type="button" className="red-theme" onClick={() => this.props.deletePosts(post.id)}>Delete</button>
