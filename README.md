@@ -10,6 +10,7 @@ To get started developing right away:
 * cd /server
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+* The `./server` folder is powered by [Udacity](https://github.com/udacity/reactnd-project-readable-starter)
 
 ### Client
 * cd /client
@@ -19,9 +20,6 @@ To get started developing right away:
 Notice:
 * API server will be available on port 3001
 * UI server will be available on port 3000
-
-## Server
-The `./src/server` folder is powered by [Udacity](https://github.com/udacity/reactnd-project-readable-starter)
 
 ## Requirements
 Home Page
