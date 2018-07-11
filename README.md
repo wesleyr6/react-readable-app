@@ -6,7 +6,7 @@ We will build a web application for content and comments. The App will allow the
 ## Instructions
 To get started developing right away:
 
-###Server
+### Server
 * cd /server
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
