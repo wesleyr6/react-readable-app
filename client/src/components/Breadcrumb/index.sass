@@ -14,13 +14,15 @@
 			font-size: 1.2rem
 			text-transform: capitalize
 
-			&:before
+			&:after
 				content: '>'
 				display: inline-block
 				margin: 0 5px
 
-			&:first-child
-				&:before
+			&:last-child
+				font-weight: 600
+
+				&:after
 					display: none
 
 			a
