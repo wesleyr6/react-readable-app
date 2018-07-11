@@ -1,0 +1,83 @@
+@import './colors'
+@import './media-query'
+
+*
+	padding: 0
+	margin: 0
+
+html
+	position: relative
+	min-height: 100%
+
+html,
+body
+	width: 100%
+	font-size: 10px
+	font-family: 'Roboto', sans-serif
+
+body
+	background-color: $light-gray
+
+#root
+	width: 100%
+
+a,
+div,
+header,
+footer,
+article,
+main,
+section,
+form,
+input,
+select,
+textarea,
+button,
+figure,
+img,
+ul,
+li,
+dl,
+dt,
+dd,
+span
+	box-sizing: border-box
+
+img,
+a img
+	border: 0
+
+ul
+	margin: 0
+	padding: 0
+
+.text-right
+	text-align: right
+
+.text-center
+	text-align: center
+
+.flex
+	display: flex
+	justify-content: space-between
+	flex-wrap: wrap
+
+.flex-mobile
+	@include mobile-screen
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+
+.wrapper
+	width: 1500px
+	margin: 0 auto
+
+	@include web-screen
+		width: 100%
+		margin: 0
+		padding: 0 25px
+
+	@include mobile-screen
+		padding: 0 20px
+		width: 100%
+		margin: 0

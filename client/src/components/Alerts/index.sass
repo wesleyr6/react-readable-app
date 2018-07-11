@@ -1,0 +1,32 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/mixins'
+@import '../../assets/styles/media-query'
+
+.alert-messages
+	width: 100%
+	margin-bottom: 20px
+	background-color: $light-gray
+	padding: 10px 15px
+	border-radius: 5px
+	border: 1px solid $dark-gray
+	position: relative
+
+	&.success
+		background-color: $light-green
+		border-color: $green
+
+	&.error
+		background-color: $light-red
+		border-color: $red
+
+	p.alert-messages-dec
+		font-size: 1.4rem
+		color: $black
+
+	span.alert-messages-hide
+		position: absolute
+		top: 13px
+		right: 10px
+		color: $black
+		font-size: 1.5rem
+		cursor: pointer

@@ -1,0 +1,15 @@
+$web-width: 1500px
+$tablet-width: 1024px
+$mobile-width: 815px
+
+@mixin web-screen
+  	@media (min-width: $tablet-width) and (max-width: $web-width)
+      	@content;
+
+@mixin tablet-screen
+  	@media (max-width: $tablet-width)
+      	@content;
+
+@mixin mobile-screen
+    @media (max-width: $mobile-width)
+        @content;

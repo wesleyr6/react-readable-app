@@ -1,0 +1,33 @@
+@import '../../assets/styles/colors'
+
+#breadcrumb
+	width: 100%
+	margin: 25px 0
+
+	ul
+		display: block
+		width: 100%
+
+		li
+			display: inline-block
+			color: $black
+			font-size: 1.2rem
+			text-transform: capitalize
+
+			&:before
+				content: '>'
+				display: inline-block
+				margin: 0 5px
+
+			&:first-child
+				&:before
+					display: none
+
+			a
+				color: $black
+				font-size: 1.2rem
+				text-decoration: none
+
+				&:hover
+					text-decoration: underline
+

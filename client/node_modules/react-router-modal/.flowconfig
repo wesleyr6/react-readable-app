@@ -1,0 +1,9 @@
+[ignore]
+.*/node_modules/documentation/.*
+<PROJECT_ROOT>/lib/.*
+
+[include]
+
+[libs]
+
+[options]

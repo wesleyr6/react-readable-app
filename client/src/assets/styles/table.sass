@@ -1,0 +1,66 @@
+@import './colors'
+@import './media-query'
+
+table,
+thead,
+tbody,
+th,
+td,
+tr
+	@include mobile-screen
+		display: block
+
+table
+	width: 100%
+	border-collapse: collapse
+	border-spacing: 0px
+	border: 1px solid $gray
+	margin-top: 20px
+
+	td,
+	th
+		font-size: 1.4rem
+		line-height: 2.2rem
+		padding: 8px 10px
+		font-weight: 300
+		vertical-align: top
+		@include mobile-screen
+			text-align: left !important
+			width: 100%
+			box-sizing: border-box
+
+	thead
+		background-color: $white
+
+		tr
+			border-bottom: 1px solid $gray
+			@include mobile-screen
+				position: absolute
+				top: -9999px
+				left: -9999px
+
+			th
+				text-align: left
+				font-weight: 400
+
+	tbody
+		tr
+			&:nth-child(even)
+				background-color: $white
+
+			&:nth-child(odd)
+				background-color: #f9f9f9
+
+			td
+				@include mobile-screen
+					position: relative
+					padding-left: 45%
+
+				&:before
+					@include mobile-screen
+						position: absolute
+						top: 8px
+						left: 8px
+						width: 40%
+						padding-right: 10px
+						white-space: nowrap

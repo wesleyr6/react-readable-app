@@ -1,0 +1,29 @@
+@import 'media-query'
+
+$grid-default: 12
+$grid-mobile: 1
+$margin: 15px
+
+@for $i from 1 through 11
+	.col-#{$i}
+		max-width: 100%
+
+@for $i from 1 through 11
+	.col-#{$i}
+		width: calc((#{$i} * 100%) / #{$grid-default})
+
+		&.grid-margin
+			width: calc(((#{$i} * 100%) / #{$grid-default}) - #{$margin})
+			@include mobile-screen
+				width: calc(((#{$i} * 100%) / #{$grid-mobile}) - #{$margin})
+
+		@include mobile-screen
+			width: calc((#{$i} * 100%) / #{$grid-mobile})
+
+.col-12
+	width: 100% !important
+
+.row
+	position: relative
+	margin-bottom: 15px
+	width: 100%
