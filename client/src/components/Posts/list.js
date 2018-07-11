@@ -36,7 +36,7 @@ class PostsList extends React.Component {
 											<td>{post.category}</td>
 											<td className="text-center">{post.voteScore}</td>
 											<td width="20%" className="text-right">
-												<Link to={`/posts/edit/${post.id}`} className="button">Edit</Link>
+												<Link to={`/posts/${post.id}/edit`} className="button">Edit</Link>
 												<button type="button" className="red-theme" onClick={() => this.props.deletePosts(post.id)}>Delete</button>
 											</td>
 										</tr>
