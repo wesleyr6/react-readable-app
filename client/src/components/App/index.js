@@ -18,17 +18,19 @@ class App extends Component {
 	}
 
 	render() {
+		const { location } = this.props;
+
 		return(
 			<div>
 				<Header />
 
 				<main>
-					<Route exact path="/:path" component={Breadcrumb} />
+					<Breadcrumb location={location} />
 
 					<Switch>
 						<Route exact path="/posts" component={HomePage} />
 						<Route exact path="/posts/create" component={CreatePage} />
-						<Route exact path="/posts/edit/:id" component={CreatePage} />
+						<Route exact path="/posts/:id/edit" component={CreatePage} />
 						<Route exact path="/posts/:id" component={PostDetailsPage} />
 						<Route exact path="/:category" component={CategoryPage} />
 						<Redirect from="/" to="/posts" />
@@ -42,6 +44,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+	location: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
