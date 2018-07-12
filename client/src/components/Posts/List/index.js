@@ -30,9 +30,7 @@ class PostsList extends React.Component {
 								posts.map(post => {
 									return(
 										<tr key={post.id}>
-											<td>
-												<Link to={`/posts/${post.id}`}>{post.title}</Link>
-											</td>
+											<td>{post.title}</td>
 											<td>{post.author}</td>
 											<td>{post.category}</td>
 											<td className="text-center">{post.voteScore}</td>
@@ -40,13 +38,14 @@ class PostsList extends React.Component {
 											<td width="20%" className="text-right">
 												<Link to={`/posts/${post.id}/edit`} className="button">Edit</Link>
 												<button type="button" className="red-theme" onClick={() => this.props.deletePosts(post.id)}>Delete</button>
+												<Link to={`/posts/${post.id}`} className="button blue-theme">Details</Link>
 											</td>
 										</tr>
 									);
 								})
 							) : (
 								<tr>
-									<td colSpan="5">No posts found</td>
+									<td colSpan="6">No posts found</td>
 								</tr>
 							)
 						}
