@@ -2,6 +2,7 @@ import { APIResquest } from '../utils/API';
 
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST_DETAILS = 'GET_POST_DETAILS';
+export const EDIT_POSTS = 'EDIT_POSTS';
 export const SAVE_POSTS = 'SAVE_POSTS';
 export const DELETE_POSTS = 'DELETE_POSTS';
 export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY';
@@ -26,6 +27,18 @@ export function deletePosts(id) {
 			data: id
 		}).then(res => {
 			dispatch({ type: DELETE_POSTS, payload: res });
+		});
+	};
+}
+
+export function editPosts(id, data) {
+	return dispatch => {
+		APIResquest({
+			uri: `posts/${id}`,
+			method: 'PUT',
+			data
+		}).then(res => {
+			dispatch({ type: EDIT_POSTS, payload: res });
 		});
 	};
 }
