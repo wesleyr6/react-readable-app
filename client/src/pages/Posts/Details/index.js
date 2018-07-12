@@ -1,30 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { loadPostDetails } from '../../../actions/posts';
 import { connect } from 'react-redux';
+import { loadPostDetails } from '../../../actions/posts';
+import { loadComments } from '../../../actions/comments';
 import { ConvertUNIX } from '../../../helpers/';
+import Comments from '../../../components/Comments/';
 
 import './index.sass';
 
 class PostDetailsPage extends React.Component {
 	componentDidMount() {
-		const { id } = this.props.match.params;
-		this.props.loadPostDetails(id);
+		const { match, loadPostDetails, loadComments } = this.props;
+
+		loadPostDetails(match.params.id);
+		loadComments(match.params.id);
 	}
 
 	render() {
-		const { post } = this.props;
+		const { post, comments } = this.props;
 		return(
 			<div className="wrapper">
 				{
 					post && post.deleted === false &&
 					<div id="postDetails">
 						<h1><span className="postDetails-category">{post.category}</span>: {post.title}</h1>
-						<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
-						<p>{post.body}</p>
 
-						<h2>Comentários ({post.commentCount})</h2>
-						<p>Here!</p>
+
+						<div id="postDetails-content">
+						<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
+							<p>{post.body}</p>
+						</div>
+
+						<h2>
+							{
+								post.commentCount > 0
+									? `${post.commentCount} Comments`
+									: 'Be the first to comment'
+							}
+						</h2>
+
+						<Comments comments={comments} />
 					</div>
 				}
 			</div>
@@ -35,13 +50,16 @@ class PostDetailsPage extends React.Component {
 PostDetailsPage.propTypes = {
 	match: PropTypes.object.isRequired,
 	post: PropTypes.object.isRequired,
-	loadPostDetails: PropTypes.func.isRequired
+	comments: PropTypes.array.isRequired,
+	loadPostDetails: PropTypes.func.isRequired,
+	loadComments: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
 	return {
-		post: state.postsReducer.post
+		post: state.postsReducer.post,
+		comments: state.commentsReducer
 	};
 };
 
-export default connect(mapStateToProps, { loadPostDetails })(PostDetailsPage);
+export default connect(mapStateToProps, { loadPostDetails, loadComments })(PostDetailsPage);
