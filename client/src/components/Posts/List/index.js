@@ -15,10 +15,11 @@ class PostsList extends React.Component {
 				<table>
 					<thead>
 						<tr>
-							<th width="50%">Title</th>
+							<th width="40%">Title</th>
 							<th width="10%">Author</th>
-							<th width="10%">Categories</th>
+							<th width="10%">Category</th>
 							<th width="10%" className="text-center">Vote score</th>
+							<th width="10%" className="text-center">Comments</th>
 							<th width="20%"></th>
 						</tr>
 					</thead>
@@ -35,6 +36,7 @@ class PostsList extends React.Component {
 											<td>{post.author}</td>
 											<td>{post.category}</td>
 											<td className="text-center">{post.voteScore}</td>
+											<td className="text-center">{post.commentCount}</td>
 											<td width="20%" className="text-right">
 												<Link to={`/posts/${post.id}/edit`} className="button">Edit</Link>
 												<button type="button" className="red-theme" onClick={() => this.props.deletePosts(post.id)}>Delete</button>
