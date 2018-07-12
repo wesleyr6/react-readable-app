@@ -23,7 +23,7 @@ class PostDetailsPage extends React.Component {
 						<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
 						<p>{post.body}</p>
 
-						<h2>Comentários</h2>
+						<h2>Comentários ({post.commentCount})</h2>
 						<p>Here!</p>
 					</div>
 				}
