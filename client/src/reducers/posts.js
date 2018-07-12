@@ -3,12 +3,13 @@ import {
 	GET_POSTS,
 	GET_POST_DETAILS,
 	SAVE_POSTS,
+	EDIT_POSTS,
 	DELETE_POSTS
 } from '../actions/posts';
 
 const initialState = {
 	posts: [],
-	postDetails: {}
+	post: {}
 };
 
 export default function (state = initialState, action = {}) {
@@ -26,12 +27,17 @@ export default function (state = initialState, action = {}) {
 	case GET_POST_DETAILS:
 		return {
 			...state,
-			postDetails: action.payload
+			post: action.payload
 		};
 	case SAVE_POSTS:
 		return {
 			...state,
 			posts: state.posts.concat([action.payload])
+		};
+	case EDIT_POSTS:
+		return {
+			...state,
+			post: action.payload
 		};
 	case DELETE_POSTS:
 		return {
