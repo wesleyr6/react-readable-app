@@ -36,6 +36,10 @@ textarea
 	&:active
 		box-shadow: 0px 0px 8px lighten($black, 50%)
 
+	&:disabled
+		background-color: $gray
+		color: $black
+
 input[type="checkbox"]
 	font-size: 2rem
 
@@ -63,6 +67,11 @@ select
 		width: 140px
 		@include mobile-screen
 			width: 48%
+
+	&:disabled
+		background-color: $gray
+		color: $black
+		cursor: default
 
 button,
 a.button
