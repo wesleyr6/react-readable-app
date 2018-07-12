@@ -9,19 +9,24 @@ class Breadcrumb extends React.Component {
 		const { location } = this.props;
 		const getPaths = location.pathname.split('/');
 		const paths = getPaths.filter(path => path !== '');
-		let arrPaths = '';
+		let arrPaths = '/';
 
 		return(
 			<nav id="breadcrumb">
 				<div className="wrapper">
 					<ul>
-						<li><Link to="/">Home</Link></li>
+						<li>
+							<i className="icon-home" />
+							<Link to="/"> Home</Link>
+						</li>
 						{
 							paths && paths.length &&
 							paths.map((path, i) => {
-								arrPaths = arrPaths + `/${path}`;
+								arrPaths = arrPaths + `${path}/`;
 								return(
-									<li key={i}><Link to={arrPaths}>{path}</Link></li>
+									path !== 'posts'
+										? <li key={i}><Link to={arrPaths}>{path}</Link></li>
+										: ''
 								);
 							})
 						}
