@@ -19,7 +19,7 @@ class PostsList extends React.Component {
 							<th width="10%">Author</th>
 							<th width="10%">Category</th>
 							<th width="10%" className="text-center">Vote score</th>
-							<th width="10%" className="text-center">Comments</th>
+							<th width="10%" className="text-center"><i className="icon-comments" /></th>
 							<th width="20%"></th>
 						</tr>
 					</thead>
