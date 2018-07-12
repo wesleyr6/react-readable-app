@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadPostsByCategory } from '../../actions/posts';
-import PostsList from '../../components/Posts/list';
-import PostsFilters from '../../components/Posts/filters';
+import PostsList from '../../components/Posts/List/';
+import PostsFilters from '../../components/Posts/Filters/';
 
 class CategoryPage extends React.Component {
 	componentDidMount() {

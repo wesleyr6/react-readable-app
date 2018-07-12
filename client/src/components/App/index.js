@@ -6,9 +6,10 @@ import { loadCategories } from '../../actions/categories';
 import Header from '../Header/';
 import HomePage from '../../pages/Home/';
 import Breadcrumb from '../Breadcrumb/';
-import CreatePage from '../../pages/Create/';
+import CreatePage from '../../pages/Posts/Create/';
+import EditPage from '../../pages/Posts/Edit/';
 import CategoryPage from '../../pages/Category/';
-import PostDetailsPage from '../../pages/PostDetails/';
+import PostDetailsPage from '../../pages/Posts/Details/';
 import Footer from '../Footer/';
 
 class App extends Component {
@@ -30,7 +31,7 @@ class App extends Component {
 					<Switch>
 						<Route exact path="/posts" component={HomePage} />
 						<Route exact path="/posts/create" component={CreatePage} />
-						<Route exact path="/posts/:id/edit" component={CreatePage} />
+						<Route exact path="/posts/:id/edit" component={EditPage} />
 						<Route exact path="/posts/:id" component={PostDetailsPage} />
 						<Route exact path="/:category" component={CategoryPage} />
 						<Redirect from="/" to="/posts" />
