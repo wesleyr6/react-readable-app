@@ -12,7 +12,7 @@ const headers = {
 };
 
 export const APIResquest = (config) => {
-	if(config.method === 'POST') {
+	if(config.method === 'POST' || config.method === 'PUT') {
 		return fetch(`${API}/${config.uri}`, {
 			method: config.method,
 			headers: {
