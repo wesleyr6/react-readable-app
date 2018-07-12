@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { loadPostDetails } from '../../actions/posts';
+import { loadPostDetails } from '../../../actions/posts';
 import { connect } from 'react-redux';
-import { ConvertUNIX } from '../../helpers/';
+import { ConvertUNIX } from '../../../helpers/';
 
 import './index.sass';
 
@@ -13,15 +13,15 @@ class PostDetailsPage extends React.Component {
 	}
 
 	render() {
-		const { postDetails } = this.props;
+		const { post } = this.props;
 		return(
 			<div className="wrapper">
 				{
-					postDetails && postDetails.deleted === false &&
+					post && post.deleted === false &&
 					<div id="postDetails">
-						<h1><span className="postDetails-category">{postDetails.category}</span>: {postDetails.title}</h1>
-						<small>Published {ConvertUNIX(postDetails.timestamp)} by {postDetails.author}</small>
-						<p>{postDetails.body}</p>
+						<h1><span className="postDetails-category">{post.category}</span>: {post.title}</h1>
+						<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
+						<p>{post.body}</p>
 
 						<h2>Comentários</h2>
 						<p>Here!</p>
@@ -34,13 +34,13 @@ class PostDetailsPage extends React.Component {
 
 PostDetailsPage.propTypes = {
 	match: PropTypes.object.isRequired,
-	postDetails: PropTypes.object.isRequired,
+	post: PropTypes.object.isRequired,
 	loadPostDetails: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
 	return {
-		postDetails: state.postsReducer.postDetails
+		post: state.postsReducer.post
 	};
 };
 

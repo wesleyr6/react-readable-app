@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletePosts } from '../../actions/posts';
+import { deletePosts } from '../../../actions/posts';
 
-import './list.sass';
+import './index.sass';
 
 class PostsList extends React.Component {
 	render() {
