@@ -23,23 +23,25 @@ class PostDetailsPage extends React.Component {
 				{
 					post && post.deleted === false &&
 					<div id="postDetails">
-						<h1><span className="postDetails-category">{post.category}</span>: {post.title}</h1>
-
+						<h1>
+							<span className="postDetails-category">{post.category}</span>:
+							{post.title}
+						</h1>
 
 						<div id="postDetails-content">
-						<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
+							<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
 							<p>{post.body}</p>
+
+							<h2>
+								{
+									post.commentCount > 0
+										? `${post.commentCount} Comments`
+										: 'Be the first to comment'
+								}
+							</h2>
+
+							<Comments comments={comments} />
 						</div>
-
-						<h2>
-							{
-								post.commentCount > 0
-									? `${post.commentCount} Comments`
-									: 'Be the first to comment'
-							}
-						</h2>
-
-						<Comments comments={comments} />
 					</div>
 				}
 			</div>
