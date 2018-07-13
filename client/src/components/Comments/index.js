@@ -1,12 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { voteComments, loadComments } from '../../actions/comments';
 import CommentsForm from './Form/';
 import IMG from '../../assets/images/avatar.svg';
 
 import './index.sass';
 
 class Comments extends React.Component {
+	componentDidMount() {
+		const { match, loadComments } = this.props;
+		loadComments(match.params.id);
+	}
+
+	onHandleVoteScore(id, option) {
+		this.props.voteComments(id, {option});
+	}
+
 	render() {
 		const { comments } = this.props;
 
@@ -29,8 +40,8 @@ class Comments extends React.Component {
 										<p>{comment.body}</p>
 
 										<div className="postComments-content-actions">
-											<i className="icon-thumbs-up" />
-											<i className="icon-thumbs-down" />
+											<i className="icon-thumbs-up" onClick={() => this.onHandleVoteScore(comment.id, 'upVote')} />
+											<i className="icon-thumbs-down" onClick={() => this.onHandleVoteScore(comment.id, 'downVote')} />
 											<span className="postComments-voteScore">{comment.voteScore}</span>
 										</div>
 									</div>
@@ -45,7 +56,10 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-	comments: PropTypes.array
+	match: PropTypes.object.isRequired,
+	comments: PropTypes.array,
+	voteComments: PropTypes.func.isRequired,
+	loadComments: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -54,4 +68,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(Comments);
+export default withRouter(connect(mapStateToProps, { loadComments, voteComments })(Comments));
