@@ -4,6 +4,7 @@ import { loadPostDetails } from './posts';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const SAVE_COMMENTS = 'SAVE_COMMENTS';
 export const VOTE_COMMENTS = 'VOTE_COMMENTS';
+export const DELETE_COMMENTS = 'DELETE_COMMENTS';
 
 export function loadComments(postID) {
 	return dispatch => {
@@ -25,6 +26,19 @@ export function addComments(data) {
 		}).then(res => {
 			dispatch({ type: SAVE_COMMENTS, payload: res });
 			dispatch(loadPostDetails(data.parentId));
+		});
+	};
+}
+
+export function deleteComments(id) {
+	return dispatch => {
+		APIResquest({
+			uri: `comments/${id}`,
+			method: 'DELETE',
+			data: id
+		}).then(res => {
+			dispatch({ type: DELETE_COMMENTS, payload: res });
+			dispatch(loadPostDetails(res.parentId));
 		});
 	};
 }

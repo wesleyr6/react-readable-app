@@ -1,4 +1,9 @@
-import { GET_COMMENTS, SAVE_COMMENTS, VOTE_COMMENTS } from '../actions/comments';
+import {
+	GET_COMMENTS,
+	SAVE_COMMENTS,
+	VOTE_COMMENTS,
+	DELETE_COMMENTS
+} from '../actions/comments';
 
 this.state = {
 	comments: []
@@ -15,6 +20,11 @@ export default function (state = {}, action) {
 		return {
 			...state,
 			comments: state.comments.concat([action.payload])
+		};
+	case DELETE_COMMENTS:
+		return {
+			...state,
+			comments: state.comments.filter(comment => comment.id !== action.payload.id)
 		};
 	case VOTE_COMMENTS:
 		return {
