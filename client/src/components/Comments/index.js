@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { voteComments, loadComments } from '../../actions/comments';
+import { voteComments, deleteComments, loadComments } from '../../actions/comments';
 import CommentsForm from './Form/';
 import IMG from '../../assets/images/avatar.svg';
 
@@ -16,6 +16,11 @@ class Comments extends React.Component {
 
 	onHandleVoteScore(id, option) {
 		this.props.voteComments(id, {option});
+	}
+
+	onHandleDelete(e, id) {
+		e.preventDefault();
+		this.props.deleteComments(id);
 	}
 
 	render() {
@@ -43,6 +48,8 @@ class Comments extends React.Component {
 											<i className="icon-thumbs-up" onClick={() => this.onHandleVoteScore(comment.id, 'upVote')} />
 											<i className="icon-thumbs-down" onClick={() => this.onHandleVoteScore(comment.id, 'downVote')} />
 											<span className="postComments-voteScore">{comment.voteScore}</span>
+											<button type="button" className="small">Edit</button>
+											<button type="button" className="red-theme small" onClick={(e) => this.onHandleDelete(e, comment.id)}>Delete</button>
 										</div>
 									</div>
 								</li>
@@ -59,7 +66,8 @@ Comments.propTypes = {
 	match: PropTypes.object.isRequired,
 	comments: PropTypes.array,
 	voteComments: PropTypes.func.isRequired,
-	loadComments: PropTypes.func.isRequired
+	loadComments: PropTypes.func.isRequired,
+	deleteComments: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -68,4 +76,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps, { loadComments, voteComments })(Comments));
+export default withRouter(connect(mapStateToProps, { loadComments, deleteComments, voteComments })(Comments));
