@@ -15,6 +15,16 @@ class PostDetailsPage extends React.Component {
 
 	render() {
 		const { post } = this.props;
+		let commentsTitle = `${post.commentCount} Comments`;
+
+		if(post) {
+			if(post.commentCount === 0) {
+				commentsTitle = 'Be the first to comment';
+			} else if(post.commentCount === 1) {
+				commentsTitle = '1 Comment';
+			}
+		}
+
 		return(
 			<div className="wrapper">
 				{
@@ -29,14 +39,7 @@ class PostDetailsPage extends React.Component {
 							<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
 							<p>{post.body}</p>
 
-							<h2>
-								{
-									post.commentCount > 0
-										? `${post.commentCount} Comments`
-										: 'Be the first to comment'
-								}
-							</h2>
-
+							<h2>{commentsTitle}</h2>
 							<Comments />
 						</div>
 					</div>
