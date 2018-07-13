@@ -3,6 +3,7 @@ import { loadPostDetails } from './posts';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const SAVE_COMMENTS = 'SAVE_COMMENTS';
+export const VOTE_COMMENTS = 'VOTE_COMMENTS';
 
 export function loadComments(postID) {
 	return dispatch => {
@@ -24,6 +25,18 @@ export function addComments(data) {
 		}).then(res => {
 			dispatch({ type: SAVE_COMMENTS, payload: res });
 			dispatch(loadPostDetails(data.parentId));
+		});
+	};
+}
+
+export function voteComments(id, option) {
+	return dispatch => {
+		APIResquest({
+			uri: `comments/${id}`,
+			method: 'POST',
+			data: option
+		}).then(res => {
+			dispatch({ type: VOTE_COMMENTS, payload: res });
 		});
 	};
 }
