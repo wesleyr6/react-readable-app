@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import CommentsForm from './Form/';
 import IMG from '../../assets/images/avatar.svg';
 
@@ -44,7 +45,13 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-	comments: PropTypes.array.isRequired
+	comments: PropTypes.array
 };
 
-export default Comments;
+const mapStateToProps = state => {
+	return {
+		comments: state.commentsReducer.comments
+	};
+};
+
+export default connect(mapStateToProps)(Comments);

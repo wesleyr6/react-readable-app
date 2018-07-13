@@ -1,4 +1,5 @@
 import { APIResquest } from '../utils/API';
+import { loadPostDetails } from './posts';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const SAVE_COMMENTS = 'SAVE_COMMENTS';
@@ -22,7 +23,7 @@ export function addComments(data) {
 			data
 		}).then(res => {
 			dispatch({ type: SAVE_COMMENTS, payload: res });
-			dispatch({ type: GET_COMMENTS, payload: [res] });
+			dispatch(loadPostDetails(data.parentId));
 		});
 	};
 }

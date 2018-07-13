@@ -17,7 +17,7 @@ class PostDetailsPage extends React.Component {
 	}
 
 	render() {
-		const { post, comments } = this.props;
+		const { post } = this.props;
 		return(
 			<div className="wrapper">
 				{
@@ -40,7 +40,7 @@ class PostDetailsPage extends React.Component {
 								}
 							</h2>
 
-							<Comments comments={comments} />
+							<Comments />
 						</div>
 					</div>
 				}
@@ -52,7 +52,7 @@ class PostDetailsPage extends React.Component {
 PostDetailsPage.propTypes = {
 	match: PropTypes.object.isRequired,
 	post: PropTypes.object.isRequired,
-	comments: PropTypes.array.isRequired,
+	comments: PropTypes.array,
 	loadPostDetails: PropTypes.func.isRequired,
 	loadComments: PropTypes.func.isRequired
 };
@@ -60,7 +60,7 @@ PostDetailsPage.propTypes = {
 const mapStateToProps = state => {
 	return {
 		post: state.postsReducer.post,
-		comments: state.commentsReducer
+		comments: state.commentsReducer.comments
 	};
 };
 
