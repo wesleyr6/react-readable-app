@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadPostDetails } from '../../../actions/posts';
-import { loadComments } from '../../../actions/comments';
 import { ConvertUNIX } from '../../../helpers/';
 import Comments from '../../../components/Comments/';
 
@@ -10,10 +9,8 @@ import './index.sass';
 
 class PostDetailsPage extends React.Component {
 	componentDidMount() {
-		const { match, loadPostDetails, loadComments } = this.props;
-
+		const { match, loadPostDetails } = this.props;
 		loadPostDetails(match.params.id);
-		loadComments(match.params.id);
 	}
 
 	render() {
@@ -52,16 +49,13 @@ class PostDetailsPage extends React.Component {
 PostDetailsPage.propTypes = {
 	match: PropTypes.object.isRequired,
 	post: PropTypes.object.isRequired,
-	comments: PropTypes.array,
-	loadPostDetails: PropTypes.func.isRequired,
-	loadComments: PropTypes.func.isRequired
+	loadPostDetails: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
 	return {
-		post: state.postsReducer.post,
-		comments: state.commentsReducer.comments
+		post: state.postsReducer.post
 	};
 };
 
-export default connect(mapStateToProps, { loadPostDetails, loadComments })(PostDetailsPage);
+export default connect(mapStateToProps, { loadPostDetails })(PostDetailsPage);
