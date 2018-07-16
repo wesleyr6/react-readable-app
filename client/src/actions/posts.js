@@ -5,6 +5,7 @@ export const GET_POST_DETAILS = 'GET_POST_DETAILS';
 export const EDIT_POSTS = 'EDIT_POSTS';
 export const SAVE_POSTS = 'SAVE_POSTS';
 export const DELETE_POSTS = 'DELETE_POSTS';
+export const VOTE_POSTS = 'VOTE_POSTS';
 export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY';
 
 export function addPosts(data) {
@@ -76,3 +77,17 @@ export function loadPostsByCategory(cat) {
 		});
 	};
 }
+
+export function votePosts(id, option) {
+	return dispatch => {
+		APIResquest({
+			uri: `posts/${id}`,
+			method: 'POST',
+			data: {option}
+		}).then(res => {
+			dispatch({ type: VOTE_POSTS, payload: res });
+			dispatch({ type: GET_POST_DETAILS, payload: res });
+		});
+	};
+}
+
