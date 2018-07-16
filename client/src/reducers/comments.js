@@ -2,7 +2,8 @@ import {
 	GET_COMMENTS,
 	SAVE_COMMENTS,
 	VOTE_COMMENTS,
-	DELETE_COMMENTS
+	DELETE_COMMENTS,
+	EDIT_COMMENTS
 } from '../actions/comments';
 
 this.state = {
@@ -15,6 +16,18 @@ export default function (state = {}, action) {
 		return {
 			...state,
 			comments: action.payload
+		};
+	case EDIT_COMMENTS:
+		return {
+			...state,
+			comments: state.comments.filter(comment => {
+				if(comment.id === action.payload.id) {
+					comment.timestamp = action.payload.timestamp;
+					comment.body = action.payload.body;
+				}
+
+				return comment;
+			})
 		};
 	case SAVE_COMMENTS:
 		return {
