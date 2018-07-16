@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loadPostDetails } from '../../../actions/posts';
 import { ConvertUNIX } from '../../../helpers/';
 import Comments from '../../../components/Comments/';
+import VoteScore from '../../../components/VoteScore/';
 
 import './index.sass';
 
@@ -38,6 +39,7 @@ class PostDetailsPage extends React.Component {
 						<div id="postDetails-content">
 							<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
 							<p>{post.body}</p>
+							<VoteScore voteScoreId={post.id} voteScoreType="post" voteScoreResult={post.voteScore} />
 
 							<h2>{commentsTitle}</h2>
 							<Comments />

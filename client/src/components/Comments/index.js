@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { voteComments, deleteComments, loadComments } from '../../actions/comments';
 import CommentsForm from './Form/';
+import VoteScore from '../VoteScore/';
 import IMG from '../../assets/images/avatar.svg';
 
 import './index.sass';
@@ -21,7 +22,6 @@ class Comments extends React.Component {
 			}
 		};
 
-		this.onHandleVoteScore = this.onHandleVoteScore.bind(this);
 		this.onHandleDelete = this.onHandleDelete.bind(this);
 		this.onHandleEdit = this.onHandleEdit.bind(this);
 	}
@@ -31,10 +31,6 @@ class Comments extends React.Component {
 		loadComments(match.params.id);
 	}
 
-	onHandleVoteScore(id, option) {
-		this.props.voteComments(id, {option});
-	}
-
 	onHandleDelete(e, id) {
 		e.preventDefault();
 		this.props.deleteComments(id);
@@ -42,8 +38,6 @@ class Comments extends React.Component {
 
 	onHandleEdit(e, comment) {
 		e.preventDefault();
-
-		console.log(comment);
 
 		this.setState({
 			commentEdit: {
@@ -78,9 +72,7 @@ class Comments extends React.Component {
 										<p>{comment.body}</p>
 
 										<div className="postComments-content-actions">
-											<i className="icon-thumbs-up" onClick={() => this.onHandleVoteScore(comment.id, 'upVote')} />
-											<i className="icon-thumbs-down" onClick={() => this.onHandleVoteScore(comment.id, 'downVote')} />
-											<span className="postComments-voteScore">{comment.voteScore}</span>
+											<VoteScore voteScoreId={comment.id} voteScoreType="comment" voteScoreResult={comment.voteScore} />
 											<button type="button" className="small" onClick={(e) => this.onHandleEdit(e, comment)}>Edit</button>
 											<button type="button" className="red-theme small" onClick={(e) => this.onHandleDelete(e, comment.id)}>Delete</button>
 										</div>
