@@ -4,7 +4,8 @@ import {
 	GET_POST_DETAILS,
 	SAVE_POSTS,
 	EDIT_POSTS,
-	DELETE_POSTS
+	DELETE_POSTS,
+	VOTE_POSTS
 } from '../actions/posts';
 
 const initialState = {
@@ -43,6 +44,13 @@ export default function (state = initialState, action = {}) {
 		return {
 			...state,
 			posts: state.posts.filter(post => post.id !== action.payload.id)
+		};
+	case VOTE_POSTS:
+		state.post.voteScore = action.payload.voteScore;
+
+		return {
+			...state,
+			post: state.post
 		};
 	default:
 		return state;
