@@ -5,6 +5,7 @@ export const GET_COMMENTS = 'GET_COMMENTS';
 export const SAVE_COMMENTS = 'SAVE_COMMENTS';
 export const VOTE_COMMENTS = 'VOTE_COMMENTS';
 export const DELETE_COMMENTS = 'DELETE_COMMENTS';
+export const EDIT_COMMENTS = 'EDIT_COMMENTS';
 
 export function loadComments(postID) {
 	return dispatch => {
@@ -26,6 +27,19 @@ export function addComments(data) {
 		}).then(res => {
 			dispatch({ type: SAVE_COMMENTS, payload: res });
 			dispatch(loadPostDetails(data.parentId));
+		});
+	};
+}
+
+export function editComments(data) {
+	return dispatch => {
+		APIResquest({
+			uri: `comments/${data.id}`,
+			method: 'PUT',
+			data
+		}).then(res => {
+			dispatch({ type: EDIT_COMMENTS, payload: res });
+			dispatch(loadPostDetails(res.parentId));
 		});
 	};
 }
