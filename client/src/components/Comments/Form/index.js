@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addComments } from '../../../actions/comments';
+import { addComments, editComments } from '../../../actions/comments';
 import IMG from '../../../assets/images/avatar.svg';
 import './index.sass';
 
@@ -11,14 +11,32 @@ class CommentsForm extends React.Component {
 		super(props);
 
 		this.state = {
+			edit: false,
+			id: '',
 			username: '',
 			usermessage: ''
 		};
 
 		this.baseState = this.state;
 
+		this.resetForm = this.resetForm.bind(this);
+		this.addComment = this.addComment.bind(this);
+		this.editComment = this.editComment.bind(this);
 		this.onHandleChange = this.onHandleChange.bind(this);
 		this.onHandleSubmit = this.onHandleSubmit.bind(this);
+	}
+
+	componentDidUpdate(prevProps) {
+		const { commentEdit } = this.props;
+
+		if (commentEdit.body !== prevProps.commentEdit.body) {
+			this.setState({
+				edit: true,
+				id: commentEdit.id,
+				username: commentEdit.author,
+				usermessage: commentEdit.body
+			});
+		}
 	}
 
 	resetForm() {
@@ -26,21 +44,32 @@ class CommentsForm extends React.Component {
 	}
 
 	onHandleChange(e) {
+		const { name, value } = e.target;
+
 		this.setState({
-			[e.target.name]: e.target.value,
-			submitMessage: false
+			[name]: value
 		});
 	}
 
 	onHandleSubmit(e) {
 		e.preventDefault();
 
-		const { username, usermessage } = this.state;
-		const { match } = this.props;
+		const { edit } = this.state;
 
 		this.resetForm();
 
-		this.props.addComments({
+		if(edit) {
+			this.editComment();
+		} else {
+			this.addComment();
+		}
+	}
+
+	addComment() {
+		const { match, addComments } = this.props;
+		const { username, usermessage } = this.state;
+
+		addComments({
 			id: Date.now(),
 			timestamp: Date.now(),
 			author: username,
@@ -49,8 +78,23 @@ class CommentsForm extends React.Component {
 		});
 	}
 
+	editComment() {
+		const { editComments } = this.props;
+		const { id, usermessage } = this.state;
+
+		this.setState({
+			edit: false
+		});
+
+		editComments({
+			id,
+			timestamp: Date.now(),
+			body: usermessage
+		});
+	}
+
 	render() {
-		const { username, usermessage } = this.state;
+		const { edit, username, usermessage } = this.state;
 
 		return(
 			<form id="commentsForm" onSubmit={this.onHandleSubmit}>
@@ -67,6 +111,7 @@ class CommentsForm extends React.Component {
 							minLength="3"
 							value={username}
 							onChange={this.onHandleChange}
+							disabled={edit ? true : false}
 							required />
 					</div>
 
@@ -82,7 +127,9 @@ class CommentsForm extends React.Component {
 					</div>
 
 					<div className="row">
-						<button className="blue-theme">Comment</button>
+						<button className="blue-theme">
+							{edit ? 'Update' : 'Comment'}
+						</button>
 					</div>
 				</div>
 			</form>
@@ -92,7 +139,9 @@ class CommentsForm extends React.Component {
 
 CommentsForm.propTypes = {
 	match: PropTypes.object.isRequired,
-	addComments: PropTypes.func.isRequired
+	addComments: PropTypes.func.isRequired,
+	editComments: PropTypes.func.isRequired,
+	commentEdit: PropTypes.object.isRequired
 };
 
-export default withRouter(connect(null, { addComments})(CommentsForm));
+export default withRouter(connect(null, { addComments, editComments })(CommentsForm));

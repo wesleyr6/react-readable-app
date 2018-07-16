@@ -9,6 +9,23 @@ import IMG from '../../assets/images/avatar.svg';
 import './index.sass';
 
 class Comments extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			commentEdit: {
+				status: false,
+				id: '',
+				author: '',
+				body: ''
+			}
+		};
+
+		this.onHandleVoteScore = this.onHandleVoteScore.bind(this);
+		this.onHandleDelete = this.onHandleDelete.bind(this);
+		this.onHandleEdit = this.onHandleEdit.bind(this);
+	}
+
 	componentDidMount() {
 		const { match, loadComments } = this.props;
 		loadComments(match.params.id);
@@ -23,12 +40,28 @@ class Comments extends React.Component {
 		this.props.deleteComments(id);
 	}
 
+	onHandleEdit(e, comment) {
+		e.preventDefault();
+
+		console.log(comment);
+
+		this.setState({
+			commentEdit: {
+				status: true,
+				id: comment.id,
+				author: comment.author,
+				body: comment.body
+			}
+		});
+	}
+
 	render() {
 		const { comments } = this.props;
+		const { commentEdit } = this.state;
 
 		return(
 			<div id="postComments">
-				<CommentsForm />
+				<CommentsForm commentEdit={commentEdit} />
 
 				<ul>
 					{
@@ -48,7 +81,7 @@ class Comments extends React.Component {
 											<i className="icon-thumbs-up" onClick={() => this.onHandleVoteScore(comment.id, 'upVote')} />
 											<i className="icon-thumbs-down" onClick={() => this.onHandleVoteScore(comment.id, 'downVote')} />
 											<span className="postComments-voteScore">{comment.voteScore}</span>
-											<button type="button" className="small">Edit</button>
+											<button type="button" className="small" onClick={(e) => this.onHandleEdit(e, comment)}>Edit</button>
 											<button type="button" className="red-theme small" onClick={(e) => this.onHandleDelete(e, comment.id)}>Delete</button>
 										</div>
 									</div>
