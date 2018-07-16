@@ -62,7 +62,7 @@ export function voteComments(id, option) {
 		APIResquest({
 			uri: `comments/${id}`,
 			method: 'POST',
-			data: option
+			data: {option}
 		}).then(res => {
 			dispatch({ type: VOTE_COMMENTS, payload: res });
 		});
