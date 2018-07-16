@@ -35,11 +35,23 @@
 				align-content: flex-start
 
 				h3
-					width: 100%
+					display: inline-flex
 					font-size: 1.4rem
 					font-weight: 600
 					text-transform: capitalize
 					margin: 5px 0
+
+				small
+					display: inline-flex
+					font-size: 1.4rem
+					font-weight: 300
+					margin: 0
+					color: $dark-gray
+
+					&:before
+						content: '|'
+						display: inline-flex
+						margin: 0 10px
 
 				p
 					width: 100%
