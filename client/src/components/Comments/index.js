@@ -18,7 +18,8 @@ class Comments extends React.Component {
 				status: false,
 				id: '',
 				author: '',
-				body: ''
+				body: '',
+				timestamp: null
 			}
 		};
 
@@ -44,7 +45,8 @@ class Comments extends React.Component {
 				status: true,
 				id: comment.id,
 				author: comment.author,
-				body: comment.body
+				body: comment.body,
+				timestamp: comment.timestamp
 			}
 		});
 	}

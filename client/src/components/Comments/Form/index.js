@@ -14,7 +14,8 @@ class CommentsForm extends React.Component {
 			edit: false,
 			id: '',
 			username: '',
-			usermessage: ''
+			usermessage: '',
+			timestamp: null
 		};
 
 		this.baseState = this.state;
@@ -29,12 +30,13 @@ class CommentsForm extends React.Component {
 	componentDidUpdate(prevProps) {
 		const { commentEdit } = this.props;
 
-		if (commentEdit.body !== prevProps.commentEdit.body) {
+		if (commentEdit.timestamp !== prevProps.commentEdit.timestamp) {
 			this.setState({
 				edit: true,
 				id: commentEdit.id,
 				username: commentEdit.author,
-				usermessage: commentEdit.body
+				usermessage: commentEdit.body,
+				timestamp: commentEdit.timestamp
 			});
 		}
 	}
