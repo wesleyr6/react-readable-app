@@ -32,8 +32,7 @@ class PostDetailsPage extends React.Component {
 					post && post.deleted === false &&
 					<div id="postDetails">
 						<h1>
-							<span className="postDetails-category">{post.category}</span>:
-							{post.title}
+							<span className="postDetails-category">{post.category}</span>: {post.title}
 						</h1>
 
 						<div id="postDetails-content">
