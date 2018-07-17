@@ -1,4 +1,4 @@
-export const ConvertUNIX = (_timestamp) => {
+function getUNIXInfo(_timestamp) {
 	const getDate = new Date(_timestamp);
 
 	const day = '0' + getDate.getDay();
@@ -8,17 +8,26 @@ export const ConvertUNIX = (_timestamp) => {
 	const minutes = '0' + getDate.getMinutes();
 	const seconds = '0' + getDate.getSeconds();
 
-	const formattedTime = `${day}/${month}/${year} at ${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
+	return {
+		date: `${day}/${month}/${year}`,
+		time: `${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`
+	};
+}
 
-	return formattedTime;
+/* EXPORTS */
+export const ConvertToDateAndTime = (_timestamp) => {
+	const myData = getUNIXInfo(_timestamp);
+	return `${myData.date} at ${myData.time}`;
+};
+
+export const ConvertToDate = (_timestamp) => {
+	const myData = getUNIXInfo(_timestamp);
+	return myData.date;
 };
 
 export const OrderBy = (arr, propName) => {
 	if(arr.length) {
-		arr.sort((a, b) => {
-			return b[propName] - a[propName];
-		});
-
+		arr.sort((a, b) => b[propName] - a[propName]);
 		return arr;
 	}
 };
