@@ -12,3 +12,13 @@ export const ConvertUNIX = (_timestamp) => {
 
 	return formattedTime;
 };
+
+export const OrderBy = (arr, propName) => {
+	if(arr.length) {
+		arr.sort((a, b) => {
+			return b[propName] - a[propName];
+		});
+
+		return arr;
+	}
+};
