@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { voteComments, deleteComments, loadComments } from '../../actions/comments';
-import { ConvertUNIX } from '../../helpers/';
+import { ConvertToDateAndTime } from '../../helpers/';
 import CommentsForm from './Form/';
 import VoteScore from '../VoteScore/';
 import IMG from '../../assets/images/avatar.svg';
@@ -73,7 +73,7 @@ class Comments extends React.Component {
 									<div className="postComments-content">
 										<div>
 											<h3>{comment.author}</h3>
-											<small>{ConvertUNIX(comment.timestamp)}</small>
+											<small>{ConvertToDateAndTime(comment.timestamp)}</small>
 										</div>
 										<p>{comment.body}</p>
 

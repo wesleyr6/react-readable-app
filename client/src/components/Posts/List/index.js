@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deletePosts } from '../../../actions/posts';
+import { ConvertToDate } from '../../../helpers/';
 
 import './index.sass';
 
@@ -15,11 +16,12 @@ class PostsList extends React.Component {
 				<table>
 					<thead>
 						<tr>
-							<th width="40%">Title</th>
+							<th width="30%">Title</th>
 							<th width="10%">Author</th>
 							<th width="10%">Category</th>
 							<th width="10%" className="text-center">Vote score</th>
 							<th width="10%" className="text-center"><i className="icon-comments" /></th>
+							<th width="10%" className="text-center">Date Created</th>
 							<th width="20%"></th>
 						</tr>
 					</thead>
@@ -35,6 +37,7 @@ class PostsList extends React.Component {
 											<td>{post.category}</td>
 											<td className="text-center">{post.voteScore}</td>
 											<td className="text-center">{post.commentCount}</td>
+											<td className="text-center">{ConvertToDate(post.timestamp)}</td>
 											<td width="20%" className="text-right">
 												<Link to={`/posts/${post.id}/edit`} className="button">Edit</Link>
 												<button type="button" className="red-theme" onClick={() => this.props.deletePosts(post.id)}>Delete</button>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadPostDetails } from '../../../actions/posts';
-import { ConvertUNIX } from '../../../helpers/';
+import { ConvertToDateAndTime } from '../../../helpers/';
 import Comments from '../../../components/Comments/';
 import VoteScore from '../../../components/VoteScore/';
 
@@ -36,7 +36,7 @@ class PostDetailsPage extends React.Component {
 						</h1>
 
 						<div id="postDetails-content">
-							<small>Published {ConvertUNIX(post.timestamp)} by {post.author}</small>
+							<small>Published {ConvertToDateAndTime(post.timestamp)} by {post.author}</small>
 							<p>{post.body}</p>
 							<VoteScore voteScoreId={post.id} voteScoreType="post" voteScoreResult={post.voteScore} />
 
