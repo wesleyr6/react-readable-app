@@ -7,6 +7,7 @@ export const SAVE_POSTS = 'SAVE_POSTS';
 export const DELETE_POSTS = 'DELETE_POSTS';
 export const VOTE_POSTS = 'VOTE_POSTS';
 export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY';
+export const ORDER_POSTS = 'ORDER_POSTS';
 
 export function addPosts(data) {
 	return dispatch => {
@@ -91,3 +92,8 @@ export function votePosts(id, option) {
 	};
 }
 
+export function orderPosts(property) {
+	return dispatch => {
+		dispatch({ type: ORDER_POSTS, payload: property });
+	};
+}

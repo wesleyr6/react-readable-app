@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { OrderBy } from '../../../helpers/';
 import { deletePosts } from '../../../actions/posts';
 import { ConvertToDate } from '../../../helpers/';
 
@@ -9,7 +10,7 @@ import './index.sass';
 
 class PostsList extends React.Component {
 	render() {
-		const { posts } = this.props;
+		const { posts, postsFilter } = this.props;
 
 		return(
 			<div>
@@ -29,7 +30,7 @@ class PostsList extends React.Component {
 					<tbody>
 						{
 							posts && posts.length ? (
-								posts.map(post => {
+								OrderBy(posts, postsFilter).map(post => {
 									return(
 										<tr key={post.id}>
 											<td>{post.title}</td>
@@ -48,7 +49,7 @@ class PostsList extends React.Component {
 								})
 							) : (
 								<tr>
-									<td colSpan="6">No posts found</td>
+									<td colSpan="7">No posts found</td>
 								</tr>
 							)
 						}
@@ -61,7 +62,14 @@ class PostsList extends React.Component {
 
 PostsList.propTypes = {
 	posts: PropTypes.array.isRequired,
+	postsFilter: PropTypes.string,
 	deletePosts: PropTypes.func.isRequired
 };
 
-export default connect(null, { deletePosts })(PostsList);
+const mapStateToProps = state => {
+	return {
+		postsFilter: state.postsReducer.postsFilter
+	};
+};
+
+export default connect(mapStateToProps, { deletePosts })(PostsList);

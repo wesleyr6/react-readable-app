@@ -1,17 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { orderPosts } from '../../../actions/posts';
 
-const PostsFilters = () => {
-	return(
-		<section className="page-actions flex-mobile">
-			<select className="small">
-				<option value="date">Date created</option>
-				<option value="vote">Vote Score</option>
-			</select>
+class PostsFilters extends React.Component {
+	render() {
+		const { orderPosts } = this.props;
 
-			<Link to="/posts/create" className="button">Create new</Link>
-		</section>
-	);
+		return(
+			<section className="page-actions flex-mobile">
+				<select className="small" onChange={(e) => orderPosts(e.target.value)}>
+					<option value="timestamp">Date created</option>
+					<option value="voteScore">Vote Score</option>
+				</select>
+
+				<Link to="/posts/create" className="button">Create new</Link>
+			</section>
+		);
+	}
+}
+
+PostsFilters.propTypes = {
+	orderPosts: PropTypes.func.isRequired
 };
 
-export default PostsFilters;
+export default connect(null, { orderPosts })(PostsFilters);
