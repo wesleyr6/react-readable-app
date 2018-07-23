@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-  - "node"
+	- "node"
 cache:
-  directories:
-    - client/node_modules
-	- server/node_modules
-script:
-  - npm run build
+	directories:
+		- node_modules
+script: cd client && npm install && cd ../server && npm install

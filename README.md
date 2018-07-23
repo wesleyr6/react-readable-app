@@ -1,4 +1,4 @@
-# Readable Project [[![Build Status](https://travis-ci.org/wesleyamaro/react-readable-app.svg?branch=master)](https://travis-ci.org/wesleyamaro/react-readable-app)]
+# Readable Project
 This is the final assessment project for Udacity's React Fundamentals course using React + Redux.
 
 We will build a web application for content and comments. The App will allow the users to post content in pre-defined categories, comment on their own posts and those of other users, and vote on posts and comments. Users can edit and delete posts and comments.
