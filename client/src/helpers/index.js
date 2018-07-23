@@ -1,16 +1,16 @@
 function getUNIXInfo(_timestamp) {
 	const getDate = new Date(_timestamp);
 
-	const day = '0' + getDate.getDay();
-	const month = '0' + getDate.getMonth();
+	const day = '0' + getDate.getDate();
+	const month = '0' + (getDate.getMonth() + 1);
 	const year = getDate.getFullYear();
-	const hours = getDate.getHours();
+	const hours = '0' + getDate.getHours();
 	const minutes = '0' + getDate.getMinutes();
 	const seconds = '0' + getDate.getSeconds();
 
 	return {
-		date: `${day}/${month}/${year}`,
-		time: `${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`
+		date: `${day.substr(-2)}/${month.substr(-2)}/${year}`,
+		time: `${hours.substr(-2)}:${minutes.substr(-2)}:${seconds.substr(-2)}`
 	};
 }
 
