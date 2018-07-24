@@ -1,9 +1,8 @@
 import React from 'react';
-//import { shallow } from 'enzyme';
-//import App from '../../components/App/';
 
-it('App', () => {
-	//const wrapper = shallow(<App/>);
-	const main = <main />;
-	expect(true).toEqual(true);
+describe('App Component', () => {
+	it('Render', () => {
+		const wrapper = shallow(<main />);
+		expect(wrapper).toHaveLength(1);
+	});
 });
