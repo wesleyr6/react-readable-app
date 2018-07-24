@@ -13,10 +13,12 @@
 		"redux-thunk": "^2.3.0"
 	},
 	"devDependencies": {
+		"enzyme-adapter-react-16": "^1.1.1",
 		"eslint": "^4.19.1",
 		"eslint-config-jest-enzyme": "^6.0.2",
 		"eslint-plugin-jest": "^21.18.0",
-		"eslint-plugin-react": "^7.8.2"
+		"eslint-plugin-react": "^7.8.2",
+		"jest-localstorage-mock": "^2.2.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",
