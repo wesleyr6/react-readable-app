@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-	- "node"
+  - "node"
 cache:
-	directories:
-		- node_modules
+  directories:
+    - node_modules
 script: cd client && npm install && cd ../server && npm install
-
