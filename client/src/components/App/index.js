@@ -10,12 +10,12 @@ import CreatePage from '../../pages/Posts/Create/';
 import EditPage from '../../pages/Posts/Edit/';
 import CategoryPage from '../../pages/Category/';
 import PostDetailsPage from '../../pages/Posts/Details/';
+import NotFoundPage from '../../pages/404/';
 import Footer from '../Footer/';
 
 class App extends Component {
 	componentDidMount() {
-		const { dispatch } = this.props;
-		dispatch(loadCategories());
+		loadCategories();
 	}
 
 	render() {
@@ -34,6 +34,7 @@ class App extends Component {
 						<Route exact path="/posts/:id/edit" component={EditPage} />
 						<Route exact path="/posts/:id" component={PostDetailsPage} />
 						<Route exact path="/:category" component={CategoryPage} />
+						<Route component={NotFoundPage} />
 						<Redirect from="/" to="/posts" />
 					</Switch>
 				</main>
@@ -45,8 +46,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-	location: PropTypes.object.isRequired,
-	dispatch: PropTypes.func.isRequired
+	location: PropTypes.object.isRequired
 };
 
-export default withRouter(connect(null)(App));
+export default withRouter(connect(null, { loadCategories })(App));
