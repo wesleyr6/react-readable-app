@@ -25,9 +25,10 @@ export const ConvertToDate = (_timestamp) => {
 	return myData.date;
 };
 
-export const OrderBy = (arr, propName) => {
-	if(arr.length) {
-		arr.sort((a, b) => b[propName] - a[propName]);
-		return arr;
+export const OrderBy = (arr = [], propName) => {
+	if(arr.length && propName) {
+		return arr.sort((a, b) => b[propName] - a[propName]);
 	}
+
+	return arr.sort();
 };
