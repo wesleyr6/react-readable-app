@@ -8,7 +8,7 @@ import { ConvertToDate } from '../../../helpers/';
 
 import './index.sass';
 
-class PostsList extends React.Component {
+export class PostsList extends React.Component {
 	render() {
 		const { posts, postsFilter } = this.props;
 

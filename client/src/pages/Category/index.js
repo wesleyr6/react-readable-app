@@ -5,7 +5,7 @@ import { loadPostsByCategory } from '../../actions/posts';
 import PostsList from '../../components/Posts/List/';
 import PostsFilters from '../../components/Posts/Filters/';
 
-class CategoryPage extends React.Component {
+export class CategoryPage extends React.Component {
 	componentDidMount() {
 		const { category } = this.props.match.params;
 		this.props.loadPostsByCategory(category);

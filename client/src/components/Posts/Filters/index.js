@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { orderPosts } from '../../../actions/posts';
 
-class PostsFilters extends React.Component {
+export class PostsFilters extends React.Component {
 	render() {
 		const { orderPosts } = this.props;
 

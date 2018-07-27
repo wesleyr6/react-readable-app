@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import './index.sass';
 
-const Header = ({ categories }) => {
+export const Header = ({ categories }) => {
 	return(
 		<header>
 			<div className="wrapper">

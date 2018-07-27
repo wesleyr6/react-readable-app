@@ -8,7 +8,7 @@ import VoteScore from '../../../components/VoteScore/';
 
 import './index.sass';
 
-class PostDetailsPage extends React.Component {
+export class PostDetailsPage extends React.Component {
 	componentDidMount() {
 		const { match, loadPostDetails } = this.props;
 		loadPostDetails(match.params.id);

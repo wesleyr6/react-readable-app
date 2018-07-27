@@ -1,5 +1,5 @@
 const port = process.env.PORT || 3001;
-const API  = process.env.ORIGIN || `http://localhost:${port}`;
+export const API  = process.env.ORIGIN || `http://localhost:${port}`;
 
 // Generate a unique token on the backend server.
 let token = localStorage.token;

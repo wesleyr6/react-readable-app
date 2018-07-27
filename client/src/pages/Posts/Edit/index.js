@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { loadPostDetails } from '../../../actions/posts';
 import PostsForm from '../../../components/Posts/Form/';
 
-class EditPage extends React.Component {
+export class EditPage extends React.Component {
 	componentDidMount() {
 		const { id } = this.props.match.params;
 		this.props.loadPostDetails(id);

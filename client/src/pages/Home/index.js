@@ -5,10 +5,9 @@ import { loadPosts } from '../../actions/posts';
 import PostsList from '../../components/Posts/List/';
 import PostsFilters from '../../components/Posts/Filters/';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
 	componentDidMount() {
-		const { loadPosts } = this.props;
-		loadPosts();
+		this.props.loadPosts();
 	}
 
 	render() {

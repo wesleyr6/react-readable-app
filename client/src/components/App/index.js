@@ -13,9 +13,9 @@ import PostDetailsPage from '../../pages/Posts/Details/';
 import NotFoundPage from '../../pages/404/';
 import Footer from '../Footer/';
 
-class App extends Component {
+export class App extends Component {
 	componentDidMount() {
-		loadCategories();
+		this.props.loadCategories();
 	}
 
 	render() {
@@ -34,8 +34,8 @@ class App extends Component {
 						<Route exact path="/posts/:id/edit" component={EditPage} />
 						<Route exact path="/posts/:id" component={PostDetailsPage} />
 						<Route exact path="/:category" component={CategoryPage} />
-						<Route component={NotFoundPage} />
 						<Redirect from="/" to="/posts" />
+						{/* <Route component={NotFoundPage} /> */}
 					</Switch>
 				</main>
 
@@ -46,7 +46,8 @@ class App extends Component {
 }
 
 App.propTypes = {
-	location: PropTypes.object.isRequired
+	location: PropTypes.object.isRequired,
+	loadCategories: PropTypes.func.isRequired
 };
 
 export default withRouter(connect(null, { loadCategories })(App));

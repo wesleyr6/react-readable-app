@@ -1,19 +1,13 @@
 import React from 'react';
-import Header from '../../components/Header/';
+import { Header } from '../../components/Header/';
 
 describe('Header Component', () => {
-	// const initialState = {
-	// 	categories: ['React', 'Redux', 'Udacity']
-	// };
-	//const store = global.mockStore(initialState);
+	const initialState = {
+		categories: ['React', 'Redux', 'Udacity']
+	};
 
 	it('Should render component', () => {
-		//const wrapper = shallow( <Header /> );
-		expect(true).toBe(true);
+		const wrapper = shallow( <Header categories={initialState.categories} /> );
+		expect(wrapper).toHaveLength(1);
 	});
-
-	// it('Should load categories', () => {
-	// 	console.log(wrapper.debug());
-	// 	expect(wrapper).toHaveLength(1);
-	// });
 });
