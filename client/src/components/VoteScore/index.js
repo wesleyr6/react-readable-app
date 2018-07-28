@@ -6,7 +6,7 @@ import { votePosts } from '../../actions/posts';
 
 import './index.sass';
 
-class VoteScore extends React.Component {
+export class VoteScore extends React.Component {
 	onHandleVoteScore(id, type, vote) {
 		const { voteComments, votePosts } = this.props;
 
