@@ -24,6 +24,7 @@ describe('Vote Score Component', () => {
 
 	afterEach(() => {
 		initialState.mock.mockReset();
+		initialState.mock.mockRestore();
 	});
 
 	it('Should render component', () => {

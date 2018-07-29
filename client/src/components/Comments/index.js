@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { voteComments, deleteComments, loadComments } from '../../actions/comments';
+import { deleteComments, loadComments } from '../../actions/comments';
 import { ConvertToDateAndTime } from '../../helpers/';
 import CommentsForm from './Form/';
 import VoteScore from '../VoteScore/';
@@ -10,7 +10,7 @@ import IMG from '../../assets/images/avatar.svg';
 
 import './index.sass';
 
-class Comments extends React.Component {
+export class Comments extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -78,9 +78,9 @@ class Comments extends React.Component {
 										<p>{comment.body}</p>
 
 										<div className="postComments-content-actions">
-											<VoteScore voteScoreId={comment.id} voteScoreType="comment" voteScoreResult={comment.voteScore} />
-											<button type="button" className="small" onClick={(e) => this.onHandleEdit(e, comment)}>Edit</button>
-											<button type="button" className="red-theme small" onClick={(e) => this.onHandleDelete(e, comment.id)}>Delete</button>
+											<VoteScore voteScoreId={`${comment.id}`} voteScoreType="comment" voteScoreResult={comment.voteScore} />
+											<button type="button" className="small edit-button" onClick={(e) => this.onHandleEdit(e, comment)}>Edit</button>
+											<button type="button" className="red-theme small delete-button" onClick={(e) => this.onHandleDelete(e, comment.id)}>Delete</button>
 										</div>
 									</div>
 								</li>
@@ -96,7 +96,6 @@ class Comments extends React.Component {
 Comments.propTypes = {
 	match: PropTypes.object.isRequired,
 	comments: PropTypes.array,
-	voteComments: PropTypes.func.isRequired,
 	loadComments: PropTypes.func.isRequired,
 	deleteComments: PropTypes.func.isRequired
 };
@@ -107,4 +106,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps, { loadComments, deleteComments, voteComments })(Comments));
+export default withRouter(connect(mapStateToProps, { loadComments, deleteComments })(Comments));

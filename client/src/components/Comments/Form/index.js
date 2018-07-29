@@ -6,7 +6,7 @@ import { addComments, editComments } from '../../../actions/comments';
 import IMG from '../../../assets/images/avatar.svg';
 import './index.sass';
 
-class CommentsForm extends React.Component {
+export class CommentsForm extends React.Component {
 	constructor(props) {
 		super(props);
 
