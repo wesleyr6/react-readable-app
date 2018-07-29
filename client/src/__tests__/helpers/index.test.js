@@ -7,8 +7,8 @@ describe('Helpers', () => {
 		expect(Helpers.ConvertToDateAndTime(getTimestamp)).toBeString();
 	});
 
-	it('ConvertToDateAndTime: Should return 26/07/2018 at 16:35:38', () => {
-		expect(Helpers.ConvertToDateAndTime(getTimestamp)).toEqual('26/07/2018 at 16:35:38');
+	it('ConvertToDateAndTime: Should return 26/07/2018 at 16:35', () => {
+		expect(Helpers.ConvertToDateAndTime(getTimestamp)).toEqual('26/07/2018 at 16:35');
 	});
 
 	it('ConvertToDate: Should return a string', () => {

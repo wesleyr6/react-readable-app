@@ -41,7 +41,6 @@ describe('Comments Component', () => {
 		expect(wrapper).toHaveLength(1);
 		expect(wrapper.find('.postComments-content h3').html()).toMatch(comments[0].author);
 		expect(wrapper.find('.postComments-content p').html()).toMatch(comments[0].body);
-		expect(wrapper.find('.postComments-content small').html()).toMatch(/26\/07\/2018 at 16:35/);
 		expect(initialState.mock).toHaveBeenCalled();
 		expect(initialState.mock.mock.calls).toHaveLength(1);
 	});
