@@ -6,7 +6,7 @@ import { addPosts, editPosts } from '../../../actions/posts';
 
 import './index.sass';
 
-class PostsForm extends React.Component {
+export class PostsForm extends React.Component {
 	constructor(props) {
 		super(props);
 
