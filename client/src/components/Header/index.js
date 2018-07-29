@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './index.sass';
@@ -42,4 +42,4 @@ Header.propTypes = {
 	categories: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
