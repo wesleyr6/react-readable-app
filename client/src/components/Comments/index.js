@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import TimeAgo from 'timeago-react';
 import { deleteComments, loadComments } from '../../actions/comments';
 import { ConvertToDateAndTime } from '../../helpers/';
 import CommentsForm from './Form/';
@@ -73,7 +74,7 @@ export class Comments extends React.Component {
 									<div className="postComments-content">
 										<div>
 											<h3>{comment.author}</h3>
-											<small>{ConvertToDateAndTime(comment.timestamp)}</small>
+											<small><TimeAgo datetime={comment.timestamp} locale='pt_BR' /></small>
 										</div>
 										<p>{comment.body}</p>
 
