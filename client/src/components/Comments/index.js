@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import { deleteComments, loadComments } from '../../actions/comments';
-import { ConvertToDateAndTime } from '../../helpers/';
 import CommentsForm from './Form/';
 import VoteScore from '../VoteScore/';
 import IMG from '../../assets/images/avatar.svg';
