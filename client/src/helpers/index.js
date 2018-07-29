@@ -6,11 +6,10 @@ function getUNIXInfo(_timestamp) {
 	const year = getDate.getFullYear();
 	const hours = '0' + getDate.getHours();
 	const minutes = '0' + getDate.getMinutes();
-	const seconds = '0' + getDate.getSeconds();
 
 	return {
 		date: `${day.substr(-2)}/${month.substr(-2)}/${year}`,
-		time: `${hours.substr(-2)}:${minutes.substr(-2)}:${seconds.substr(-2)}`
+		time: `${hours.substr(-2)}:${minutes.substr(-2)}`
 	};
 }
 
