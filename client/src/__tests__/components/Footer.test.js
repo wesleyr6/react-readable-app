@@ -12,7 +12,7 @@ describe('Footer Component', () => {
 		expect(wrapper).toHaveLength(1);
 	});
 
-	it('Should contains the keyword copyright', () => {
+	it('Should contain the keyword copyright', () => {
 		expect(wrapper.find('p').html()).toMatch(/Copyright/);
 	});
 });

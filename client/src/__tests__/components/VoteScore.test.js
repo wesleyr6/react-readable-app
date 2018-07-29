@@ -32,7 +32,7 @@ describe('Vote Score Component', () => {
 		expect(wrapper.find('.voteScore-result').html()).toMatch(`${initialState.voteScoreResult}`);
 	});
 
-	it('Should contains like and dislike buttons', () => {
+	it('Should contain like and dislike buttons', () => {
 		expect(wrapper.find('.icon-thumbs-up')).toHaveLength(1);
 		expect(wrapper.find('.icon-thumbs-down')).toHaveLength(1);
 	});
