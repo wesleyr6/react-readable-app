@@ -5,3 +5,7 @@ cache:
   directories:
     - node_modules
 script: cd client && npm install && cd ../server && npm install
+deploy:
+  provider: surge
+  project: ./
+  domain: wesleyamaro-readable.surge.sh
