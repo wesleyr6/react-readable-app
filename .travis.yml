@@ -3,9 +3,14 @@ node_js:
   - "node"
 cache:
   directories:
-    - node_modules
-script: cd client && npm install && cd ../server && npm install
+    - client/node_modules
+	- server/node_modules
+script:
+  - cd server && npm install
+  - cd ../client && npm install
+  - npm test
+  - npm run build
 deploy:
   provider: surge
-  project: ./
+  project: ./client/build
   domain: wesleyamaro-readable.surge.sh
