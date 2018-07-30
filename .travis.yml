@@ -14,5 +14,3 @@ deploy:
   provider: surge
   project: ./client/build
   domain: wesleyamaro-readable.surge.sh
-  on:
-  	branch: master
