@@ -23,7 +23,16 @@ describe('Alerts Component', () => {
 		expect(wrapper).toHaveLength(1);
 	});
 
-	it('Should be shown all the properties', () => {
+	it('Should render without props', () => {
+		const wrapper2 = shallow(<Alerts />);
+		expect(wrapper2).toHaveLength(1);
+
+		// DEFAULT PARAMS
+		expect(wrapper2.html()).toMatch(/success/);
+		expect(wrapper2.find('.alert-messages-desc').text()).toEqual('Testing message...');
+	});
+
+	it('Should render props', () => {
 		expect(wrapper.html()).toMatch(`alert-messages ${initialState.type}`);
 		expect(wrapper.find('.alert-messages-desc').html()).toMatch(initialState.message);
 	});
