@@ -15,4 +15,4 @@ deploy:
   project: ./client/build
   domain: wesleyamaro-readable.surge.sh
   on:
-  	branch: feature/travis
+  	branch: master
