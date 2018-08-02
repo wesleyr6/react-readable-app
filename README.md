@@ -7,7 +7,6 @@ We will build a web application for content and comments. The App will allow the
 To get started developing right away:
 
 ### Server
-* cd /server
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 * The `./server` folder is powered by [Udacity](https://github.com/udacity/reactnd-project-readable-starter)
