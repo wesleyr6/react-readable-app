@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import App from './components/App/';
 import reducers from './reducers/';
-import registerServiceWorker from './registerServiceWorker';
 
 import './assets/styles/main.sass';
 
