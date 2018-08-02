@@ -11,7 +11,11 @@ const headers = {
 	'Authorization': token
 };
 
+console.log(token);
+
 export const APIResquest = (config) => {
+	console.log(config);
+
 	if(config.method === 'POST' || config.method === 'PUT') {
 		return fetch(`${API}/${config.uri}`, {
 			method: config.method,
@@ -31,7 +35,7 @@ export const APIResquest = (config) => {
 				'Content-Type': 'application/json'
 			}
 		})
-			.then(res => res.json())
+			.then(res => {console.log(res); res.json();})
 			.then(data => data);
 	}
 };
