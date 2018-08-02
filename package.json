@@ -1,0 +1,20 @@
+{
+  "name": "react-readable-app",
+  "version": "1.0.0",
+  "description": "This is the final assessment project for Udacity's React Fundamentals course using React + Redux.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && npm install && node index.js",
+    "postinstall": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesleyamaro/react-readable-app.git"
+  },
+  "keywords": [],
+  "author": "Wesley Amaro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wesleyamaro/react-readable-app/issues"
+  }
+}

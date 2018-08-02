@@ -10,7 +10,3 @@ script:
   - cd ../client && npm install
   - npm test
   - npm run build
-deploy:
-  provider: surge
-  project: ./client/build
-  domain: wesleyamaro-readable.surge.sh
