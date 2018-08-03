@@ -11,7 +11,7 @@ import {
 
 const initialState = {
 	posts: [],
-	postsFilter: 'timestamp',
+	postsFilter: 'voteScore',
 	post: {}
 };
 

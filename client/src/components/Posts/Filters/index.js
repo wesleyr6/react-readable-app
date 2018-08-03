@@ -11,8 +11,8 @@ export class PostsFilters extends React.Component {
 		return(
 			<section className="page-actions flex-mobile">
 				<select className="small" onChange={(e) => orderPosts(e.target.value)}>
-					<option value="timestamp">Date created</option>
 					<option value="voteScore">Vote Score</option>
+					<option value="timestamp">Date created</option>
 				</select>
 
 				<Link to="/create" className="button">Create new</Link>
