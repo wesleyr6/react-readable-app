@@ -3,6 +3,9 @@ This is the final assessment project for Udacity's React Fundamentals course usi
 
 We will build a web application for content and comments. The App will allow the users to post content in pre-defined categories, comment on their own posts and those of other users, and vote on posts and comments. Users can edit and delete posts and comments.
 
+## Preview
+[Check it out](https://mysterious-tor-73477.herokuapp.com/)
+
 ## Instructions
 To get started developing right away:
 
