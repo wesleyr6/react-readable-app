@@ -20,13 +20,11 @@ class Breadcrumb extends React.Component {
 							<Link to="/"> Home</Link>
 						</li>
 						{
-							paths && paths.length &&
+							paths && paths.length > 0 &&
 							paths.map((path, i) => {
 								arrPaths = arrPaths + `${path}/`;
 								return(
-									path !== 'posts'
-										? <li key={i}><Link to={arrPaths}>{path}</Link></li>
-										: ''
+									<li key={i}><Link to={arrPaths}>{path}</Link></li>
 								);
 							})
 						}

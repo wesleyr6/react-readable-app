@@ -29,13 +29,12 @@ export class App extends Component {
 					<Breadcrumb location={location} />
 
 					<Switch>
-						<Route exact path="/posts" component={HomePage} />
-						<Route exact path="/posts/create" component={CreatePage} />
-						<Route exact path="/posts/:id/edit" component={EditPage} />
-						<Route exact path="/posts/:id" component={PostDetailsPage} />
+						<Route exact path="/" component={HomePage} />
+						<Route exact path="/create" component={CreatePage} />
 						<Route exact path="/:category" component={CategoryPage} />
-						<Redirect from="/" to="/posts" />
-						{/* <Route component={NotFoundPage} /> */}
+						<Route exact path="/:category/:id/edit" component={EditPage} />
+						<Route exact path="/:category/:id" component={PostDetailsPage} />
+						<Route component={NotFoundPage} />
 					</Switch>
 				</main>
 

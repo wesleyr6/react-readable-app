@@ -15,7 +15,7 @@ export class PostsFilters extends React.Component {
 					<option value="voteScore">Vote Score</option>
 				</select>
 
-				<Link to="/posts/create" className="button">Create new</Link>
+				<Link to="/create" className="button">Create new</Link>
 			</section>
 		);
 	}

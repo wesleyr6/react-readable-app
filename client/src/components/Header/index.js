@@ -14,7 +14,7 @@ export const Header = ({ categories }) => {
 				<nav>
 					<ul>
 						{
-							categories.length &&
+							categories.length > 0 &&
 							categories.map((category, i) => {
 								return(
 									<li key={i}>
