@@ -28,7 +28,7 @@ export const APIResquest = (config) => {
 		return settings;
 	};
 
-	return fetch(`${API}/${config.uri}`, requestConfig())
+	return fetch(`${API}/api/${config.uri}`, requestConfig())
 		.then(res => res.json())
 		.then(data => data)
 		.catch(err => {console.log(err);});
