@@ -6,7 +6,7 @@ describe('Breadcrumb Component', () => {
 
 	const initialState = {
 		location: {
-			pathname: '/posts/categories/react/react-e-bom'
+			pathname: '/categories/react-e-bom'
 		}
 	};
 
@@ -20,7 +20,7 @@ describe('Breadcrumb Component', () => {
 
 	it('Should render pathnames', () => {
 		const texts = wrapper.find('li').map(node => node.text());
-		expect(texts).toHaveLength(4);
+		expect(texts).toHaveLength(3); // 2 paths + 1 path (home - default)
 	});
 });
 
