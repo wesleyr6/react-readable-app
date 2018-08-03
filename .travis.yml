@@ -4,9 +4,9 @@ node_js:
 cache:
   directories:
     - client/node_modules
-	- server/node_modules
+    - server/node_modules
 script:
-  - cd server && npm install
+  - npm install
   - cd ../client && npm install
   - npm test
   - npm run build
