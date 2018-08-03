@@ -14,11 +14,18 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 app.use(cors());
 
-if (process.env.NODE_ENV === 'production') {
-	app.get('*', function(req, res) {
-		res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-	});
-}
+app.use('api/*', (req, res, next) => {
+	const token = req.get('Authorization');
+
+	if (token) {
+		req.token = token;
+		next();
+	} else {
+		res.status(403).send({
+			error: 'Please provide an Authorization header to identify yourself (can be whatever you want)'
+		});
+	}
+});
 
 app.get('/api/help', (req, res) => {
 	const help = `
@@ -119,20 +126,6 @@ app.get('/api/help', (req, res) => {
 
 	res.send(help);
 });
-
-app.use('api/*', (req, res, next) => {
-	const token = req.get('Authorization');
-
-	if (token) {
-		req.token = token;
-		next();
-	} else {
-		res.status(403).send({
-			error: 'Please provide an Authorization header to identify yourself (can be whatever you want)'
-		});
-	}
-});
-
 
 app.get('/api/categories', (req, res) => {
 	categories.getAll(req.token)
@@ -319,6 +312,12 @@ app.delete('/api/comments/:id', (req, res) => {
 			}
 		);
 });
+
+if (process.env.NODE_ENV === 'production') {
+	app.get('*', function(req, res) {
+		res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+	});
+}
 
 app.listen(config.port, () => {
 	console.log('Server listening on port %s, Ctrl+C to stop', config.port);
