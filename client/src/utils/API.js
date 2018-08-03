@@ -1,5 +1,5 @@
 const port = process.env.PORT || 3001;
-const API = process.env.NODE_ENV === 'production' ? window.origin : `http://localhost:${port}`;
+export const API = process.env.NODE_ENV === 'production' ? window.origin : `http://localhost:${port}`;
 
 // Generate a unique token on the backend server.
 let token = localStorage.token;
@@ -11,31 +11,35 @@ const headers = {
 	'Authorization': token
 };
 
-console.log(token);
+console.warn('API URL: ', API);
 
 export const APIResquest = (config) => {
-	console.log(config);
+	const requestConfig = () => {
+		let settings = {};
 
-	if(config.method === 'POST' || config.method === 'PUT') {
-		return fetch(`${API}/${config.uri}`, {
-			method: config.method,
-			headers: {
-				...headers,
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ ...config.data })
-		})
-			.then(res => res.json())
-			.then(data => data);
-	} else {
-		return fetch(`${API}/${config.uri}`, {
-			method: config.method,
-			headers: {
-				...headers,
-				'Content-Type': 'application/json'
-			}
-		})
-			.then(res => {console.log(res); res.json();})
-			.then(data => data);
-	}
+		if(config.method === 'POST' || config.method === 'PUT') {
+			settings = {
+				method: config.method,
+				headers: {
+					...headers,
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ ...config.data })
+			};
+		} else {
+			settings = {
+				method: config.method,
+				headers: {
+					...headers,
+					'Content-Type': 'application/json'
+				}
+			};
+		}
+
+		return settings;
+	};
+
+	return fetch(`${API}/${config.uri}`, requestConfig())
+		.then(res => res.json())
+		.then(data => data);
 };
