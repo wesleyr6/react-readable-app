@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
-app.get('/api', (req, res) => {
+app.get('/api/help', (req, res) => {
 	const help = `
   <pre>
     Welcome to the Udacity Readable API!
@@ -120,7 +120,7 @@ app.get('/api', (req, res) => {
 	res.send(help);
 });
 
-app.use((req, res, next) => {
+app.use('api/*', (req, res, next) => {
 	const token = req.get('Authorization');
 
 	if (token) {
