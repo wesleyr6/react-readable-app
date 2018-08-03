@@ -8,32 +8,21 @@ if (!token)
 
 const headers = {
 	'Accept': 'application/json',
+	'Content-Type': 'application/json',
 	'Authorization': token
 };
 
-console.warn('API URL: ', API);
-
 export const APIResquest = (config) => {
 	const requestConfig = () => {
-		let settings = {};
+		let settings = {
+			method: config.method,
+			headers: {
+				...headers
+			}
+		};
 
 		if(config.method === 'POST' || config.method === 'PUT') {
-			settings = {
-				method: config.method,
-				headers: {
-					...headers,
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ ...config.data })
-			};
-		} else {
-			settings = {
-				method: config.method,
-				headers: {
-					...headers,
-					'Content-Type': 'application/json'
-				}
-			};
+			settings.body = JSON.stringify({ ...config.data });
 		}
 
 		return settings;
