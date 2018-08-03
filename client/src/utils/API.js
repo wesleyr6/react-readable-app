@@ -30,5 +30,6 @@ export const APIResquest = (config) => {
 
 	return fetch(`${API}/${config.uri}`, requestConfig())
 		.then(res => res.json())
-		.then(data => data);
+		.then(data => data)
+		.catch(err => {console.log(err);});
 };
