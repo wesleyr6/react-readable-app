@@ -87,7 +87,6 @@ export function votePosts(id, option) {
 			data: {option}
 		}).then(res => {
 			dispatch({ type: VOTE_POSTS, payload: res });
-			dispatch({ type: GET_POST_DETAILS, payload: res });
 		});
 	};
 }
