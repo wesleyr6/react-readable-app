@@ -52,7 +52,13 @@ export default function (state = initialState, action = {}) {
 
 		return {
 			...state,
-			post: state.post
+			post: action.payload,
+			posts: state.posts.filter(post => {
+				if(post.id === action.payload.id)
+					post.voteScore = action.payload.voteScore;
+
+				return post;
+			})
 		};
 	case ORDER_POSTS:
 		return {
