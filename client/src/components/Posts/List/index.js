@@ -31,6 +31,14 @@ export class PostsList extends React.Component {
 		}
 	}
 
+	onHandleDelete(postID) {
+		const { deletePosts } = this.props;
+
+		if (window.confirm('Do you really want to delete this post?')) {
+			deletePosts(postID);
+		}
+	}
+
 	onHandleOrderPosts(_value) {
 		const orderPosts = OrderBy(this.state.allPosts, _value);
 
@@ -83,7 +91,7 @@ export class PostsList extends React.Component {
 											<td className="text-center">{ConvertToDate(post.timestamp)}</td>
 											<td width="20%" className="text-right">
 												<Link to={`/${post.category}/${post.id}/edit`} className="button">Edit</Link>
-												<button type="button" className="red-theme" onClick={() => this.props.deletePosts(post.id)}>Delete</button>
+												<button type="button" className="red-theme" onClick={() => this.onHandleDelete(post.id)}>Delete</button>
 												<Link to={`/${post.category}/${post.id}`} className="button blue-theme">Details</Link>
 											</td>
 										</tr>

@@ -19,8 +19,11 @@ export class PostDetailsPage extends React.Component {
 
 	onHandleDelete(postID) {
 		const { history, deletePosts } = this.props;
-		deletePosts(postID);
-		history.goBack();
+
+		if (window.confirm('Do you really want to delete this post?')) {
+			deletePosts(postID);
+			history.goBack();
+		}
 	}
 
 	render() {
