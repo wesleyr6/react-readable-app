@@ -90,9 +90,3 @@ export function votePosts(id, option) {
 		});
 	};
 }
-
-export function orderPosts(property) {
-	return dispatch => {
-		dispatch({ type: ORDER_POSTS, payload: property });
-	};
-}

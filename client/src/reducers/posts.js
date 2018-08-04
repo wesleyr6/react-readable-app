@@ -5,13 +5,11 @@ import {
 	SAVE_POSTS,
 	EDIT_POSTS,
 	DELETE_POSTS,
-	VOTE_POSTS,
-	ORDER_POSTS
+	VOTE_POSTS
 } from '../actions/posts';
 
 const initialState = {
 	posts: [],
-	postsFilter: 'voteScore',
 	post: {}
 };
 
@@ -59,11 +57,6 @@ export default function (state = initialState, action = {}) {
 
 				return post;
 			})
-		};
-	case ORDER_POSTS:
-		return {
-			...state,
-			postsFilter: action.payload
 		};
 	default:
 		return state;

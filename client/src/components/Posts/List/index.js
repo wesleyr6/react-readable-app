@@ -6,18 +6,47 @@ import { OrderBy } from '../../../helpers/';
 import { deletePosts } from '../../../actions/posts';
 import { ConvertToDate } from '../../../helpers/';
 import VoteScore from '../../VoteScore/';
-import { orderPosts } from '../../../actions/posts';
 
 import './index.sass';
 
 export class PostsList extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			allPosts: [],
+			order: 'voteScore'
+		};
+
+		this.onHandleOrderPosts = this.onHandleOrderPosts.bind(this);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.posts !== prevProps.posts) {
+			const orderPosts = OrderBy(this.props.posts, this.state.order);
+
+			this.setState({
+				allPosts: orderPosts
+			});
+		}
+	}
+
+	onHandleOrderPosts(_value) {
+		const orderPosts = OrderBy(this.state.allPosts, _value);
+
+		this.setState({
+			allPosts: orderPosts,
+			order: _value
+		});
+	}
+
 	render() {
-		const { posts, postsFilter } = this.props;
+		const { allPosts } = this.state;
 
 		return(
 			<div>
 				<section className="page-actions flex-mobile">
-					<select className="small" onChange={(e) => orderPosts(e.target.value)}>
+					<select className="small" onChange={(e) => this.onHandleOrderPosts(e.target.value)}>
 						<option value="voteScore">Vote Score</option>
 						<option value="timestamp">Date created</option>
 					</select>
@@ -40,8 +69,8 @@ export class PostsList extends React.Component {
 
 					<tbody>
 						{
-							posts && posts.length ? (
-								OrderBy(posts, postsFilter).map(post => {
+							allPosts.length ? (
+								allPosts.map(post => {
 									return(
 										<tr key={post.id}>
 											<td>{post.title}</td>
@@ -75,15 +104,7 @@ export class PostsList extends React.Component {
 
 PostsList.propTypes = {
 	posts: PropTypes.array.isRequired,
-	postsFilter: PropTypes.string,
-	deletePosts: PropTypes.func.isRequired,
-	orderPosts: PropTypes.func.isRequired
+	deletePosts: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
-	return {
-		postsFilter: state.postsReducer.postsFilter
-	};
-};
-
-export default connect(mapStateToProps, { deletePosts, orderPosts })(PostsList);
+export default connect(null, { deletePosts })(PostsList);
