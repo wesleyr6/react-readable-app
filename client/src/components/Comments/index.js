@@ -6,6 +6,7 @@ import TimeAgo from 'timeago-react';
 import { deleteComments, loadComments } from '../../actions/comments';
 import CommentsForm from './Form/';
 import VoteScore from '../VoteScore/';
+import { OrderBy } from '../../helpers/';
 import IMG from '../../assets/images/avatar.svg';
 
 import './index.sass';
@@ -15,6 +16,7 @@ export class Comments extends React.Component {
 		super(props);
 
 		this.state = {
+			comments: [],
 			commentEdit: {
 				status: false,
 				id: '',
@@ -31,6 +33,15 @@ export class Comments extends React.Component {
 	componentDidMount() {
 		const { match, loadComments } = this.props;
 		loadComments(match.params.id);
+	}
+
+	componentDidUpdate(prevProps) {
+		if(this.props.comments !== prevProps.comments) {
+			const order = OrderBy(this.props.comments, 'voteScore');
+			this.setState({
+				comments: order
+			});
+		}
 	}
 
 	onHandleDelete(e, id) {
@@ -53,8 +64,7 @@ export class Comments extends React.Component {
 	}
 
 	render() {
-		const { comments } = this.props;
-		const { commentEdit } = this.state;
+		const { commentEdit, comments} = this.state;
 
 		return(
 			<div id="postComments">
@@ -62,7 +72,7 @@ export class Comments extends React.Component {
 
 				<ul>
 					{
-						comments && comments.length > 0 &&
+						comments.length > 0 &&
 						comments.map(comment => {
 							return(
 								<li key={comment.id}>
