@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { OrderBy } from '../../../helpers/';
 import { deletePosts } from '../../../actions/posts';
 import { ConvertToDate } from '../../../helpers/';
+import VoteScore from '../../VoteScore/';
+import { orderPosts } from '../../../actions/posts';
 
 import './index.sass';
 
@@ -14,6 +16,15 @@ export class PostsList extends React.Component {
 
 		return(
 			<div>
+				<section className="page-actions flex-mobile">
+					<select className="small" onChange={(e) => orderPosts(e.target.value)}>
+						<option value="voteScore">Vote Score</option>
+						<option value="timestamp">Date created</option>
+					</select>
+
+					<Link to="/create" className="button">Create new</Link>
+				</section>
+
 				<table>
 					<thead>
 						<tr>
@@ -36,7 +47,9 @@ export class PostsList extends React.Component {
 											<td>{post.title}</td>
 											<td>{post.author}</td>
 											<td>{post.category}</td>
-											<td className="text-center">{post.voteScore}</td>
+											<td className="text-center">
+												<VoteScore voteScoreId={`${post.id}`} voteScoreType="post" voteScoreResult={post.voteScore} />
+											</td>
 											<td className="text-center">{post.commentCount}</td>
 											<td className="text-center">{ConvertToDate(post.timestamp)}</td>
 											<td width="20%" className="text-right">
@@ -63,7 +76,8 @@ export class PostsList extends React.Component {
 PostsList.propTypes = {
 	posts: PropTypes.array.isRequired,
 	postsFilter: PropTypes.string,
-	deletePosts: PropTypes.func.isRequired
+	deletePosts: PropTypes.func.isRequired,
+	orderPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -72,4 +86,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { deletePosts })(PostsList);
+export default connect(mapStateToProps, { deletePosts, orderPosts })(PostsList);

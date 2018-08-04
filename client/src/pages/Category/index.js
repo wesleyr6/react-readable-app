@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadPostsByCategory } from '../../actions/posts';
 import PostsList from '../../components/Posts/List/';
-import PostsFilters from '../../components/Posts/Filters/';
 
 export class CategoryPage extends React.Component {
 	componentDidMount() {
@@ -25,7 +24,6 @@ export class CategoryPage extends React.Component {
 		return(
 			<div className="wrapper">
 				<h1>Posts from {`"${match.params.category}"`}</h1>
-				<PostsFilters />
 				<PostsList posts={posts} />
 			</div>
 		);

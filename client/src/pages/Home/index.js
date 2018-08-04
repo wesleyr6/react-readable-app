@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadPosts } from '../../actions/posts';
 import PostsList from '../../components/Posts/List/';
-import PostsFilters from '../../components/Posts/Filters/';
 
 export class HomePage extends React.Component {
 	componentDidMount() {
@@ -16,7 +15,6 @@ export class HomePage extends React.Component {
 		return(
 			<div className="wrapper">
 				<h1>Posts</h1>
-				<PostsFilters />
 				<PostsList posts={posts} />
 			</div>
 		);
