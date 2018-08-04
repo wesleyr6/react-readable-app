@@ -52,9 +52,13 @@ export default function (state = initialState, action = {}) {
 				...state.post,
 				voteScore: action.payload.voteScore
 			},
-			posts: state.posts.filter(post => {
-				if(post.id === action.payload.id)
-					post.voteScore = action.payload.voteScore;
+			posts: state.posts.map(post => {
+				if(post.id === action.payload.id) {
+					return {
+						...post,
+						voteScore: action.payload.voteScore
+					};
+				}
 
 				return post;
 			})

@@ -20,10 +20,13 @@ export default function (state = {}, action) {
 	case EDIT_COMMENTS:
 		return {
 			...state,
-			comments: state.comments.filter(comment => {
+			comments: state.comments.map(comment => {
 				if(comment.id === action.payload.id) {
-					comment.timestamp = action.payload.timestamp;
-					comment.body = action.payload.body;
+					return {
+						...comment,
+						timestamp: action.payload.timestamp,
+						body: action.payload.body
+					};
 				}
 
 				return comment;
@@ -42,9 +45,13 @@ export default function (state = {}, action) {
 	case VOTE_COMMENTS:
 		return {
 			...state,
-			comments: state.comments.filter(comment => {
-				if(comment.id === action.payload.id)
-					comment.voteScore = action.payload.voteScore;
+			comments: state.comments.map(comment => {
+				if(comment.id === action.payload.id) {
+					return {
+						...comment,
+						voteScore: action.payload.voteScore
+					};
+				}
 
 				return comment;
 			})
