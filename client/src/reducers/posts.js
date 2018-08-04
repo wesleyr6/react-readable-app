@@ -46,11 +46,12 @@ export default function (state = initialState, action = {}) {
 			posts: state.posts.filter(post => post.id !== action.payload.id)
 		};
 	case VOTE_POSTS:
-		state.post.voteScore = action.payload.voteScore;
-
 		return {
 			...state,
-			post: action.payload,
+			post: {
+				...state.post,
+				voteScore: action.payload.voteScore
+			},
 			posts: state.posts.filter(post => {
 				if(post.id === action.payload.id)
 					post.voteScore = action.payload.voteScore;

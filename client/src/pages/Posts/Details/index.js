@@ -55,7 +55,7 @@ export class PostDetailsPage extends React.Component {
 								<div id="postDetails-content">
 									<small>Published {ConvertToDateAndTime(post.timestamp)} by {post.author}</small>
 									<p>{post.body}</p>
-									<VoteScore voteScoreId={post.id} voteScoreType="post" voteScoreResult={post.voteScore} />
+									<VoteScore voteScoreId={`${post.id}`} voteScoreType="post" voteScoreResult={post.voteScore} />
 
 									<h2>{commentsTitle}</h2>
 									<Comments />
