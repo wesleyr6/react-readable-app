@@ -21,18 +21,22 @@ describe('PostDetails Page', () => {
 			params: {
 				id: Date.now()
 			}
-		}
+		},
+		history: {}
 	};
 
 	beforeEach(() => {
 		wrapper = shallow(<PostDetailsPage
 			loadPostDetails={initialState.mockFn}
+			deletePosts={initialState.mockFn}
 			post={initialState.post}
-			match={initialState.match} />);
+			match={initialState.match}
+			history={initialState.history} />);
 	});
 
 	afterEach(() => {
 		initialState.mockFn.mockReset();
+		initialState.mockFn.mockRestore();
 	});
 
 	it('Should render component', () => {
