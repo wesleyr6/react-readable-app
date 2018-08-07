@@ -70,9 +70,8 @@ export class PostDetailsPage extends React.Component {
 									<span className="postDetails-category">OPS!</span>
 								</h1>
 
-								<Alerts
-									type="info"
-									message="This post is not available anymore." />
+								<Alerts type="info" message="This post is not available anymore." />
+								<Link className="button blue-theme margin-top" to="/">Go back to Home</Link>
 							</div>
 						)
 				}
